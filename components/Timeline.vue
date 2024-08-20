@@ -1,38 +1,40 @@
 <template>
-    <div class="timeline-container">
-      <ul class="timeline">
-        <li v-for="(item, index) in timelineItems" :key="index" :class="getItemClasses(index).li">
-          <div :class="getItemClasses(index).dot">
-            <div class="card">
-              <h3>{{ item.year }}</h3>
-              <p>{{ item.event }}</p>
-            </div>
+  <div class="timeline-container">
+    <ul class="timeline">
+      <li v-for="(item, index) in timelineItems" :key="index" :class="getItemClasses(index).li">
+        <div :class="getItemClasses(index).dot">
+          <div class="year-box">
+            <h3>{{ item.year }}</h3>
           </div>
-        </li>
-      </ul>
-    </div>
-  </template>
-  
-  <script setup>
-  import { defineProps, computed } from 'vue'
-  
-  const props = defineProps({
-    timelineItems: {
-      type: Array,
-      required: true
-    }
-  })
-  
-  const getItemClasses = (index) => {
-    const isEven = index % 2 === 0
-    return {
-      li: isEven ? 'left' : 'right',
-      dot: isEven ? 'dotLeft' : 'dotRight'
-    }
+          <div class="event-description">
+            <p>{{ item.event }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup>
+import { defineProps, computed } from 'vue'
+
+const props = defineProps({
+  timelineItems: {
+    type: Array,
+    required: true
   }
-  </script>
-  
-  <style scoped>
+})
+
+const getItemClasses = (index) => {
+  const isEven = index % 2 === 0
+  return {
+    li: isEven ? 'left' : 'right',
+    dot: isEven ? 'lineLeft' : 'lineRight'
+  }
+}
+</script>
+
+<style scoped>
 .timeline-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -49,20 +51,27 @@
   content: "";
   position: absolute;
   width: 6px;
-  background-color: white;
+  background-color: #136ae5;
   top: 0;
   bottom: 0;
   left: 50%;
   margin-left: -3px;
 }
 
-.card {
-  padding: 20px;
-  background-color: #e5e9f3;
+.year-box {
+  background-color: #fff;
+  border: 3px solid #136ae5;
+  border-radius: 20px;
+  padding: 5px 25px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.event-description {
+  background-color: #f5f5f5;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin: 0 auto;
 }
 
 .left, .right {
@@ -74,30 +83,31 @@
 
 .left {
   left: 0;
+  text-align: right;
 }
 
 .right {
   left: 50%;
+  text-align: left;
 }
 
-.dotLeft::before, .dotRight::before {
+.lineLeft::before, .lineRight::before {
   content: "";
   position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: white;
-  border: 4px solid #559cff;
-  top: 15px;
-  border-radius: 50%;
+  width: 48px;
+  height: 4px;
+  background-color: #136ae5;
+  top: 40px;
+  border-radius: 10%;
   z-index: 1;
 }
 
-.dotLeft::before {
-  right: -17px;
+.lineLeft::before {
+  right: -4px;
 }
 
-.dotRight::before {
-  left: -17px;
+.lineRight::before {
+  left: -4px;
 }
 
 @media screen and (max-width: 600px) {
@@ -109,14 +119,17 @@
     width: 100%;
     padding-left: 70px;
     padding-right: 25px;
+    text-align: left;
+    margin-top: 16px;
   }
   
   .right {
     left: 0%;
   }
   
-  .dotLeft::before, .dotRight::before {
-    left: 15px;
+  .lineLeft::before, .lineRight::before {
+    left: 28px;
+    width: 45px;
   }
 }
 </style>
