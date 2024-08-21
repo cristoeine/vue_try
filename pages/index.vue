@@ -32,6 +32,14 @@
 	  event: "Introducing features like async/await, spread/rest operators etc.",
 	},
   ])
+
+useHead({
+	title:'Test Home',
+	meta:[
+        {name: 'description', content:'lalala'}
+      ]
+})
+  
   </script>
   
   <style scoped>
