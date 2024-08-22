@@ -8,7 +8,25 @@ export default defineNuxtConfig({
       title: 'Test',
       meta: [
         { name: 'description', content: 'lalala' }
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
+        }
       ]
-    }
-  }
+    },
+  },
+  css: ['~/assets/global.css', 'vuetify/lib/styles/main.sass'],
+  build: {
+    transpile: ['vuetify'],
+  },
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+    },
+  },
+  plugins: [
+    '~/plugins/vuetify',
+  ],
 })

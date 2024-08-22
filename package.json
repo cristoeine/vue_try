@@ -12,7 +12,8 @@
   "dependencies": {
     "nuxt": "^3.12.4",
     "vite-plugin-vuetify": "^2.0.4",
-    "vue": "latest"
+    "vue": "latest",
+    "vuetify": "^3.7.0"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "devDependencies": {
