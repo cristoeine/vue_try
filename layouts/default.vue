@@ -6,7 +6,7 @@
           <div class="navbar-menu">
             <NuxtLink to="/" class="navbar-item">Home</NuxtLink>
             <NuxtLink to="/about" class="navbar-item">About</NuxtLink>
-            <NuxtLink to="/timeline" class="navbar-item">Timeline</NuxtLink>
+            <NuxtLink to="/news" class="navbar-item">News</NuxtLink>
             <NuxtLink to="/contact" class="navbar-item">Contact</NuxtLink>
             
           </div>
@@ -17,28 +17,32 @@
         </main>
 
         <v-footer
-          class="bg-grey-lighten-1"
+          color="grey"
+          dark
         >
           <v-row
             justify="center"
-            no-gutters
+            class="my-4 text-center"
           >
-            <v-btn
-              v-for="link in links"
-              :key="link"
-              color="white"
-              variant="text"
-              class="mx-2"
-              rounded="xl"
+            <v-col cols="12"
+              >Lorem ipsum dolor sit amet consectetur
+              adipisicing elit.</v-col
             >
-              {{ link }}
-            </v-btn>
-            <v-col
-              class="text-center mt-4"
-              cols="12"
-            >
-              {{ new Date().getFullYear() }} — <strong>Your Company Name</strong>
+            <v-col cols="12">
+              <v-btn
+                v-for="icon in icons"
+                :key="icon"
+                text
+                dark
+              >
+                <v-icon>{{ icon }}</v-icon>
+              </v-btn>
             </v-col>
+            <v-col
+              cols="12"
+              class="align-center"
+              >&copy; 2022 Coding Beauty</v-col
+            >
           </v-row>
         </v-footer>
       </div>
@@ -47,6 +51,13 @@
 
 <script setup>
 const isScrolled = ref(false)
+
+const icons = [
+  'mdi-facebook',
+  'mdi-twitter',
+  'mdi-instagram',
+  'mdi-youtube',
+]
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50 // Change color after 50px of scrolling
